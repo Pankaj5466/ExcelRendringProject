@@ -35,9 +35,7 @@
     --btnFontColor: var(--black);
   }
 
-  .implicationCellStyle{
-    white-space: pre;
-  }
+
   table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -54,3 +52,6 @@
     background-color: #eae8e8;
   }
 
+  .implicationCellStyle{
+    white-space: pre;
+  }

@@ -34,3 +34,7 @@
     --btnBg: var(--white);
     --btnFontColor: var(--black);
   }
+
+  .implicationCellStyle{
+    background-color: rebeccapurple;
+  }

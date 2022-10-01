@@ -36,3 +36,9 @@ Javascript strict mode & why, JS Reference
 
 - Export and importing variable, function to different file
 [MDN_Ref](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export)
+
+## Creating Dynamic element
+- Create DIV via createElement
+- Append some text to it
+- add some class to it
+- Creat a table, create a row & then cell, then add this newly created div to it.

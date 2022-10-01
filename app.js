@@ -97,11 +97,9 @@ document.querySelector('.excelbutton').addEventListener('click',()=>{
             console.log(rowObject);
             jsonDataObject = [...jsonDataObject,...rowObject];
             jsonData +=JSON.stringify(rowObject,undefined,4);
-        
-            break;
-           
+            break; //TO-DO: for now just complete the first sheet
         }
-         document.getElementById("json-data").innerHTML = jsonData;
+      //   document.getElementById("json-data").innerHTML = jsonData;
          createTable(jsonDataObject);
     }
 })
@@ -120,9 +118,19 @@ const getTableRow=(topic,tbl)=>{
     for(let j=0;j<5;j++)
     {
         const cell = tr.insertCell(j);
-        const text = document.createTextNode(topic[KEYS[j]]);
+        let value = topic[KEYS[j]];
+        if(value === undefined)
+            value="";
+        
+        const text = document.createTextNode(value);
+        //CREATING HTML Element=> https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+        const newDiv = document.createElement("div");
+        newDiv.append(text); //OR below
+        //newDiv.innerHTML = value;
+        /* IMP: you can create any html element you want with JavaScript code. You can append it to the cell by using appendChild. Since div in my example is an object and a reference to a DOM node after it gets appended you can set event handlers to it etc. */
 
-        cell.appendChild(text);
+        newDiv.classList="implicationCellStyle";
+        cell.appendChild(newDiv);
     }
     return tr;  
 }
@@ -135,7 +143,7 @@ const createTable = (topicArray)=>{
     tbl.style.width = '100px';
     tbl.style.border='1px solid black';
 
-    for(let i=0;i<topics.length;i++){
+    for(let i=0;i<topicArray.length;i++){
         const tr = getTableRow(topicArray[i],tbl);; //tr is table row
 
         //addRow('table-data')

@@ -83,25 +83,60 @@ document.querySelector('.excelbutton').addEventListener('click',()=>{
         let workbook  = XLSX.read(data,{type:'binary'});
 
         let jsonData="";
+        let jsonDataObject = [];
 
         //workbook.SheetNames.forEach(sheet=>{
         for(let i=0;i<workbook.SheetNames.length;i++){
             const sheet = workbook.SheetNames[i];
-            let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
+            let rowObject = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
+           //let rowObject = XLSX.utils.sheet_to_html(workbook.Sheets[sheet]);
+            
+            //rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
+          //  rowObject = XLSX.utils.sheet_to_txt(workbook.Sheets[sheet]);
 
             console.log(rowObject);
+            jsonDataObject = [...jsonDataObject,...rowObject];
             jsonData +=JSON.stringify(rowObject,undefined,4);
+        
             break;
            
         }
          document.getElementById("json-data").innerHTML = jsonData;
+         createTable(jsonDataObject);
     }
 })
 
 
+const getTableRow=(topic,tbl)=>{
+    const tr = tbl.insertRow();
 
-const createTable = (topicArray)=>{
-    let x;
+    for(let j=0;j<5;j++)
+    {
+        const cell = tr.insertCell(j);
+        const text = document.createTextNode('New Cell');
+
+        cell.appendChild(text);
+    }
+    return tr;  
 }
 
-createTable(topics);
+const createTable = (topicArray)=>{
+    
+    const body = document.body;
+    const tbl = document.createElement('table'); //tbl is table
+
+    tbl.style.width = '100px';
+    tbl.style.border='1px solid black';
+
+    for(let i=0;i<topics.length;i++){
+        const tr = getTableRow(topicArray[i],tbl);; //tr is table row
+
+        //addRow('table-data')
+
+        
+    }
+    body.appendChild(tbl);
+
+}
+
+

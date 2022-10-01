@@ -131,8 +131,29 @@ const getTableRow = (topic, tbl) => {
     const imageCell = getTableCell(topic.Image, 'imageCellStyle');
     const referenceCell = getTableCell(topic.Reference, 'referenceCellStyle');
 
+    let showImage = false;
     imageCell.addEventListener('click',(e)=>{
         console.log('Clicked it ',topic.Image);
+        /* Find out how to replae
+        const img = document.createElement('img');
+        img.src = "https://asia.olympus-imaging.com/content/000107506.jpg";
+        img.src = topic.Image;
+        img.alt = "alt";
+        img.title="title";
+        */
+
+        if(showImage === false)
+        {
+            //tr.insertCell(4).appendChild(img);
+            //imageCell.innerHTML =img;
+           // imageCell.appendChild(img);
+           imageCell.innerHTML = `<img src=${topic.Image} class='imageDimension' alt='Hello'></img>`
+        }
+        else
+        {
+            imageCell.innerHTML=topic.Image;
+        }
+        showImage = !showImage;
     })
 
     tr.insertCell(0).appendChild(topicCell);
@@ -154,10 +175,6 @@ const createTable = (topicArray) => {
 
     for (let i = 0; i < topicArray.length; i++) {
         const tr = getTableRow(topicArray[i], tbl);; //tr is table row
-
-        //addRow('table-data')
-
-
     }
     body.appendChild(tbl);
 

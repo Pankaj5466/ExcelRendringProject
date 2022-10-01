@@ -30,3 +30,9 @@ HTML History, why utf-8?, what's in head, HTML Element Referende
 What is CSS
 Javascript strict mode & why, JS Reference
 [REF](https://learn.microsoft.com/en-us/training/modules/build-simple-website/7-summary)
+
+
+# Working With JS
+
+- Export and importing variable, function to different file
+[MDN_Ref](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export)

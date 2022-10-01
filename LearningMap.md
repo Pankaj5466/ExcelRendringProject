@@ -12,3 +12,21 @@ Ans: use queryselector!
 - CamelCasing vs hypen-case, what is the JavaScript convention for variable naming?
 
 - Explaing code that change the color theme of document & button text when a button is clicked.
+
+
+## Questions.
+
+## Web Developer Concepts
+- What is Gracefuel degradation in web-development?
+Ans: Feature should work regardless of componenet failure.
+[FaultTolerance](https://en.wikipedia.org/wiki/Fault_tolerance)
+
+- What is Seperation of Concerns in web-development?
+
+- What is Progressive Enhacement?
+
+## Web Development References()
+HTML History, why utf-8?, what's in head, HTML Element Referende
+What is CSS
+Javascript strict mode & why, JS Reference
+[REF](https://learn.microsoft.com/en-us/training/modules/build-simple-website/7-summary)

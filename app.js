@@ -106,6 +106,13 @@ document.querySelector('.excelbutton').addEventListener('click',()=>{
     }
 })
 
+const KEYS = [
+    "Topic",
+    "Summary",
+    "Implication",
+    "Image",
+    "Reference"
+];
 
 const getTableRow=(topic,tbl)=>{
     const tr = tbl.insertRow();
@@ -113,7 +120,7 @@ const getTableRow=(topic,tbl)=>{
     for(let j=0;j<5;j++)
     {
         const cell = tr.insertCell(j);
-        const text = document.createTextNode('New Cell');
+        const text = document.createTextNode(topic[KEYS[j]]);
 
         cell.appendChild(text);
     }

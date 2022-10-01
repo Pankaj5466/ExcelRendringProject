@@ -113,30 +113,31 @@ const KEYS = [
 ];
 
 const getTableCell = (text, classList) => {
-    const topicCell = document.createElement('div');
-    topicCell.append(text);
-    topicCell.classList = classList;
-    return topicCell;
+    const divElement = document.createElement('div');
+    divElement.append(text===undefined?"":text); //OR //divElement.innerHTML = value;
+    divElement.classList = classList;
+    return divElement;
 }
 const getTableRow = (topic, tbl) => {
     const tr = tbl.insertRow();
 
     //CREATING HTML Element=> https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
-    const newDiv = document.createElement("div");
-    newDiv.append(text); //OR below
-    //newDiv.innerHTML = value;
+    
     /* IMP: you can create any html element you want with JavaScript code. You can append it to the cell by using appendChild. Since div in my example is an object and a reference to a DOM node after it gets appended you can set event handlers to it etc. */
 
+    const topicCell  = getTableCell(topic.Topic,'topicCellStyle');
     const summaryCell = getTableCell(topic.Summary, 'summaryCellStyle');
-    const implicationCell = getTableCell(topic.ImplicationCell, 'implicationCellStyle');
+    const implicationCell = getTableCell(topic.Implication, 'implicationCellStyle');
     const imageCell = getTableCell(topic.Image, 'imageCellStyle');
-    const referenceCell = getTableCell(topic.Reference, 'imageCellStyle');
+    const referenceCell = getTableCell(topic.Reference, 'referenceCellStyle');
 
+    tr.insertCell(0).appendChild(topicCell);
+    tr.insertCell(1).appendChild(summaryCell);
+    tr.insertCell(2).appendChild(implicationCell);
+    tr.insertCell(3).appendChild(imageCell);
+    tr.insertCell(4).appendChild(referenceCell);
 
-    cell.appendChild(summaryCell);
-
-}
-return tr;  
+    return tr;  
 }
 
 const createTable = (topicArray) => {

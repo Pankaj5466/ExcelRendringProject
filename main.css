@@ -52,6 +52,10 @@
     background-color: #eae8e8;
   }
 
-  .implicationCellStyle{
+  .topicCellStyle,
+  .summaryCellStyle,
+  .implicationCellStyle,
+  .imageCellStyle
+  {
     white-space: pre;
   }

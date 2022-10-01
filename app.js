@@ -129,7 +129,7 @@ const getTableRow=(topic,tbl)=>{
         //newDiv.innerHTML = value;
         /* IMP: you can create any html element you want with JavaScript code. You can append it to the cell by using appendChild. Since div in my example is an object and a reference to a DOM node after it gets appended you can set event handlers to it etc. */
 
-        newDiv.classList="implicationCellStyle";
+        newDiv.classList="`implicationCellStyle`";
         cell.appendChild(newDiv);
     }
     return tr;  

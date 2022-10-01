@@ -1,8 +1,8 @@
-:root {
+/* :root {
     --green: #00FF00;
     --white: #FFFFFF;
     --black: #000000;
-  }
+  } */
   body {
     background: var(--bg);
     color: var(--fontColor);
@@ -36,5 +36,21 @@
   }
 
   .implicationCellStyle{
-    background-color: rebeccapurple;
+    white-space: pre;
   }
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #eae8e8;
+  }
+

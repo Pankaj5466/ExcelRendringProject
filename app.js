@@ -1,54 +1,54 @@
 'use strict'
 
 const callTopic = {
-    title:".call",
-    about:`>Recall: function scope do not have this.
+    title: ".call",
+    about: `>Recall: function scope do not have this.
     >in JS, this is the object calling the function
     > they inherit this of lexo order
     > If our function uses this, then we need to call via .call`,
 
-    code:`const bookFlight = AirIndia.book; //book is a function that used this 
+    code: `const bookFlight = AirIndia.book; //book is a function that used this 
     bookFlight("Pankaj","Delhi","Jharkhand"); //this will not be attached to this function call
     bookFlight.call("Pankaj","Delhi","Jharkhand"); //call will attach this`,
 
-    image:`https://allma.si/blog/wp-content/uploads/2020/11/bind-vs-call-vs-apply.png`,
+    image: `https://allma.si/blog/wp-content/uploads/2020/11/bind-vs-call-vs-apply.png`,
 
-    extra:'Extra Link or Reference Here',
+    extra: 'Extra Link or Reference Here',
 
-    subTopic:undefined //Not declaring will have same meaning
+    subTopic: undefined //Not declaring will have same meaning
 }
 
 const applyTopic = {
-    title:"..bind :: most preferred",
-    about:`>Bind also allow the pass of this
+    title: "..bind :: most preferred",
+    about: `>Bind also allow the pass of this
     > BUT , it does not immediately call , instead it reutnr 
     new function`,
 
-    code:`const bookFlight = book.bind(AirIndia.book);
+    code: `const bookFlight = book.bind(AirIndia.book);
     bookFlight(userData); //call to happen now
     same as AirInida.book(userData)`,
-    
-    image:`https://allma.si/blog/wp-content/uploads/2020/11/bind-vs-call-vs-apply.png`,
 
-    extra:'Extra Link or Reference Here'  ,
+    image: `https://allma.si/blog/wp-content/uploads/2020/11/bind-vs-call-vs-apply.png`,
+
+    extra: 'Extra Link or Reference Here',
 
 }
 
 const topicHead = {
-    title:'call,apply and bind',
-    about:"",
-    code:"",
-    image:"",
-    extra:"",
-    subTopic:[callTopic,applyTopic]
+    title: 'call,apply and bind',
+    about: "",
+    code: "",
+    image: "",
+    extra: "",
+    subTopic: [callTopic, applyTopic]
 }
 
-const  topics = [topicHead,topicHead];
+const topics = [topicHead, topicHead];
 
 
 const button = document.querySelector('.btn'); //Get the button displayed on HTML page with .btn id
 
-button.addEventListener('click',()=>{
+button.addEventListener('click', () => {
     console.log("Button Clicked");
 
     document.body.classList.toggle('light-theme');
@@ -56,7 +56,7 @@ button.addEventListener('click',()=>{
 
     const className = document.body.className; //Javascript varialbe naming convention is camelCase!
     console.log(className);
-    if(className == "light-theme")
+    if (className == "light-theme")
         button.textContent = 'Switch to Dark Theme'
     else
         button.textContent = 'Switch To Light Theme'
@@ -64,43 +64,43 @@ button.addEventListener('click',()=>{
 
 let fileName = "";
 //Save File Path
-document.getElementById('input').addEventListener('change',(e)=>{
+document.getElementById('input').addEventListener('change', (e) => {
     fileName = e.target.files[0];
-    console.log("File Selected is \n",fileName);
+    console.log("File Selected is \n", fileName);
 })
-let data=[{
-    "name":"jayanth",
-    "data":"scd",
-    "abc":"sdef"
+let data = [{
+    "name": "jayanth",
+    "data": "scd",
+    "abc": "sdef"
 }]
 
-document.querySelector('.excelbutton').addEventListener('click',()=>{
+document.querySelector('.excelbutton').addEventListener('click', () => {
     let fileReader = new FileReader();
     fileReader.readAsBinaryString(fileName);
 
-    fileReader.onload = (event)=>{
+    fileReader.onload = (event) => {
         let data = event.target.result;
-        let workbook  = XLSX.read(data,{type:'binary'});
+        let workbook = XLSX.read(data, { type: 'binary' });
 
-        let jsonData="";
+        let jsonData = "";
         let jsonDataObject = [];
 
         //workbook.SheetNames.forEach(sheet=>{
-        for(let i=0;i<workbook.SheetNames.length;i++){
+        for (let i = 0; i < workbook.SheetNames.length; i++) {
             const sheet = workbook.SheetNames[i];
             let rowObject = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
-           //let rowObject = XLSX.utils.sheet_to_html(workbook.Sheets[sheet]);
-            
+            //let rowObject = XLSX.utils.sheet_to_html(workbook.Sheets[sheet]);
+
             //rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
-          //  rowObject = XLSX.utils.sheet_to_txt(workbook.Sheets[sheet]);
+            //  rowObject = XLSX.utils.sheet_to_txt(workbook.Sheets[sheet]);
 
             console.log(rowObject);
-            jsonDataObject = [...jsonDataObject,...rowObject];
-            jsonData +=JSON.stringify(rowObject,undefined,4);
+            jsonDataObject = [...jsonDataObject, ...rowObject];
+            jsonData += JSON.stringify(rowObject, undefined, 4);
             break; //TO-DO: for now just complete the first sheet
         }
-      //   document.getElementById("json-data").innerHTML = jsonData;
-         createTable(jsonDataObject);
+        //   document.getElementById("json-data").innerHTML = jsonData;
+        createTable(jsonDataObject);
     }
 })
 
@@ -112,43 +112,47 @@ const KEYS = [
     "Reference"
 ];
 
-const getTableRow=(topic,tbl)=>{
+const getTableCell = (text, classList) => {
+    const topicCell = document.createElement('div');
+    topicCell.append(text);
+    topicCell.classList = classList;
+    return topicCell;
+}
+const getTableRow = (topic, tbl) => {
     const tr = tbl.insertRow();
 
-    for(let j=0;j<5;j++)
-    {
-        const cell = tr.insertCell(j);
-        let value = topic[KEYS[j]];
-        if(value === undefined)
-            value="";
-        
-        const text = document.createTextNode(value);
-        //CREATING HTML Element=> https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
-        const newDiv = document.createElement("div");
-        newDiv.append(text); //OR below
-        //newDiv.innerHTML = value;
-        /* IMP: you can create any html element you want with JavaScript code. You can append it to the cell by using appendChild. Since div in my example is an object and a reference to a DOM node after it gets appended you can set event handlers to it etc. */
+    //CREATING HTML Element=> https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement
+    const newDiv = document.createElement("div");
+    newDiv.append(text); //OR below
+    //newDiv.innerHTML = value;
+    /* IMP: you can create any html element you want with JavaScript code. You can append it to the cell by using appendChild. Since div in my example is an object and a reference to a DOM node after it gets appended you can set event handlers to it etc. */
 
-        newDiv.classList="implicationCellStyle";
-        cell.appendChild(newDiv);
-    }
-    return tr;  
+    const summaryCell = getTableCell(topic.Summary, 'summaryCellStyle');
+    const implicationCell = getTableCell(topic.ImplicationCell, 'implicationCellStyle');
+    const imageCell = getTableCell(topic.Image, 'imageCellStyle');
+    const referenceCell = getTableCell(topic.Reference, 'imageCellStyle');
+
+
+    cell.appendChild(summaryCell);
+
+}
+return tr;  
 }
 
-const createTable = (topicArray)=>{
-    
+const createTable = (topicArray) => {
+
     const body = document.body;
     const tbl = document.createElement('table'); //tbl is table
 
     tbl.style.width = '100px';
-    tbl.style.border='1px solid black';
+    tbl.style.border = '1px solid black';
 
-    for(let i=0;i<topicArray.length;i++){
-        const tr = getTableRow(topicArray[i],tbl);; //tr is table row
+    for (let i = 0; i < topicArray.length; i++) {
+        const tr = getTableRow(topicArray[i], tbl);; //tr is table row
 
         //addRow('table-data')
 
-        
+
     }
     body.appendChild(tbl);
 

@@ -8,3 +8,7 @@
 
 - How to get HTML Button element in js code?
 Ans: use queryselector!
+
+- CamelCasing vs hypen-case, what is the JavaScript convention for variable naming?
+
+- Explaing code that change the color theme of document & button text when a button is clicked.

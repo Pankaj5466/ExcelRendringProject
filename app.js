@@ -16,8 +16,12 @@ button.addEventListener('click',()=>{
         button.textContent = 'Switch To Light Theme'
 });
 
-
-const fileName = "Copy of CopyOf_avaScriptNots(CanBeSafelyDeleted).xlsx";
+let fileName = "";
+//Save File Path
+document.getElementById('input').addEventListener('change',(e)=>{
+    fileName = e.target.files[0];
+    console.log("File Selected is \n",fileName);
+})
 let data=[{
     "name":"jayanth",
     "data":"scd",
@@ -25,19 +29,22 @@ let data=[{
 }]
 
 document.querySelector('.excelbutton').addEventListener('click',()=>{
-    XLSX.utils.json_to_sheet(data,'out.xlsx');
-
     let fileReader = new FileReader();
     fileReader.readAsBinaryString(fileName);
 
-    fileName.onload = (event)=>{
+    fileReader.onload = (event)=>{
         let data = event.target.result;
         let workbook  = XLSX.read(data,{type:'binary'});
 
+        let jsonData="";
+
         workbook.SheetNames.forEach(sheet=>{
-            let rowObject = XLSX.sheet_to_row_object_array(workbook.Sheet[sheet]);
+            let rowObject = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
 
             console.log(rowObject);
+            jsonData +=JSON.stringify(rowObject,undefined,4);
+           
         })
+         document.getElementById("jsondata").innerHTML = jsonData;
     }
 })

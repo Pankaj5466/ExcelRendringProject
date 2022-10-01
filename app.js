@@ -131,6 +131,10 @@ const getTableRow = (topic, tbl) => {
     const imageCell = getTableCell(topic.Image, 'imageCellStyle');
     const referenceCell = getTableCell(topic.Reference, 'referenceCellStyle');
 
+    imageCell.addEventListener('click',(e)=>{
+        console.log('Clicked it ',topic.Image);
+    })
+
     tr.insertCell(0).appendChild(topicCell);
     tr.insertCell(1).appendChild(summaryCell);
     tr.insertCell(2).appendChild(implicationCell);

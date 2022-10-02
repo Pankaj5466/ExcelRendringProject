@@ -72,3 +72,10 @@
     max-width: 400px;
     max-height: 500px;
   }
+
+  .imageIconDimension{
+    background-color: blue;
+    position: inherit;
+    max-width: 150px;
+    max-height: 200px;
+  }

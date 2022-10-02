@@ -131,7 +131,7 @@ const getTableRow = (topic, tbl) => {
     const imageCell = getTableCell(topic.Image, 'imageCellStyle');
     const referenceCell = getTableCell(topic.Reference, 'referenceCellStyle');
 
-    let showImage = false;
+    let showIconImage = true;
     imageCell.addEventListener('click',(e)=>{
         console.log('Clicked it ',topic.Image);
         /* Find out how to replae
@@ -142,24 +142,49 @@ const getTableRow = (topic, tbl) => {
         img.title="title";
         */
 
-        if(showImage === false)
+        if(window.event.shiftKey === true)
+        {
+            //SHIFT key was held during click //TO-DO: Change to Ctrl key later
+
+            //New Tab? or New Window? <- its browser depedent & developer do not have any constorl
+            window.open(topic.Image,"_blank").focus();
+            return;
+        }
+
+        if(showIconImage === true)
         {
             //tr.insertCell(4).appendChild(img);
             //imageCell.innerHTML =img;
            // imageCell.appendChild(img);
            imageCell.innerHTML = `<img src=${topic.Image} class='imageDimension' alt='Hello'></img>`
+           
         }
         else
         {
-            imageCell.innerHTML=topic.Image;
+            //imageCell.innerHTML = `<img src=${topic.Image} class='imageIconDimension' alt='Hello'></img>`
+            imageCell.innerHTML = topic.Image;
         }
-        showImage = !showImage;
+        showIconImage = !showIconImage;
     })
 
+    imageCell.onclick = (e)=>{
+
+    }
+
+    //OR imageCell.onmouseover = function;
+    imageCell.addEventListener('mouseenter',()=>{
+        //console.log("img mouseEnter")
+    });
+
+    imageCell.onmouseout = ()=>{
+       // console.log("img mouseOut")
+
+    }
+
     tr.insertCell(0).appendChild(topicCell);
-    tr.insertCell(1).appendChild(summaryCell);
+    tr.insertCell(1).appendChild(imageCell);
     tr.insertCell(2).appendChild(implicationCell);
-    tr.insertCell(3).appendChild(imageCell);
+    tr.insertCell(3).appendChild(summaryCell);
     tr.insertCell(4).appendChild(referenceCell);
 
     return tr;  
